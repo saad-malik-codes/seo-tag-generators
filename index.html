@@ -168,19 +168,24 @@
 
 	
 	<script type="text/javascript">
+		function escapeSchemaValue(value) {
+            return value.replace(/[&<>"']/g, function(character) {
+                return {"&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;", "'": "&#39;"}[character];
+            });
+        }
 		document.getElementById("schemaNapButton").onclick=function() {			
 			document.getElementById("schemaOutput").innerHTML=
-				" &lt;div itemscope itemtype=&#34;http://schema.org/LocalBusiness&#34;&gt;<br />&nbsp; &lt;span itemprop=&#34;name&#34;&gt; " + document.getElementById("businessName").value +
+				" &lt;div itemscope itemtype=&#34;http://schema.org/LocalBusiness&#34;&gt;<br />&nbsp; &lt;span itemprop=&#34;name&#34;&gt; " + escapeSchemaValue(document.getElementById("businessName").value) +
 				" &lt;/span&gt;<br />&nbsp; &lt;div itemprop=&#34;address&#34; itemscope itemtype=&#34;http://schema.org/PostalAddress&#34;&gt;<br />&nbsp; &nbsp; &lt;span itemprop=&#34;streetAddress&#34;&gt; " +
-				document.getElementById("businessAddress").value + 
+				escapeSchemaValue(document.getElementById("businessAddress").value) +
 				" &lt;/span&gt;<br /> &nbsp; &nbsp; &lt;span itemprop=&#34;addressLocality&#34;&gt; " +
-				document.getElementById("businessCity").value + 
+				escapeSchemaValue(document.getElementById("businessCity").value) +
 				" &lt;/span&gt;,<br /> &nbsp; &nbsp; &lt;span itemprop=&#34;addressRegion&#34;&gt; " +
-				document.getElementById("businessState").value +
+				escapeSchemaValue(document.getElementById("businessState").value) +
 				" &lt;/span&gt;,<br /> &nbsp; &nbsp; &lt;span itemprop=&#34;postalCode&#34;&gt; " +
-				document.getElementById("businessZip").value +				
+				escapeSchemaValue(document.getElementById("businessZip").value) +
 				" &lt;/span&gt;<br /> &nbsp; &lt;&#47;div&gt;<br /> &nbsp; &lt;span itemprop=&#34;telephone&#34;&gt; "
-				+ document.getElementById("businessPhone").value +
+				+ escapeSchemaValue(document.getElementById("businessPhone").value) +
 				" &lt;/span&gt;<br />&lt;&#47;div&gt; ";
 	 	 };
 		
@@ -190,10 +195,10 @@
     <script src="js/jquery.js"></script>
 	
     <!-- Bootstrap Core JavaScript -->
-    <script src="js/bootstrap.min.js"></script>
+    <script src="js/bootstrap.js"></script>
 
     <!-- Plugin JavaScript -->
-    <script src="http://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.3/jquery.easing.min.js"></script>
     <script src="js/classie.js"></script>
     <script src="js/cbpAnimatedHeader.js"></script>
 
